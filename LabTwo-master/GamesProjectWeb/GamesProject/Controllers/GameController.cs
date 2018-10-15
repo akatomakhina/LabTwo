@@ -17,7 +17,7 @@ using System.Web.Http.Cors;
 
 namespace GamesProject.Controllers
 {
-    [RoutePrefix("api/channel")]
+    [RoutePrefix("api/news/channel")]
     [GameExceptionFilter]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GameController : ApiController
