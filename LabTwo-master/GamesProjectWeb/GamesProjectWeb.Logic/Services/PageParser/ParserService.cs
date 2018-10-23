@@ -42,7 +42,7 @@ namespace GamesProjectWeb.Logic.Services.PageParser
                 return news;
             }
 
-            news.Description = parser.Parse(html);
+            //news.Description = parser.Parse(html);
             return news;
         }
 

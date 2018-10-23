@@ -17,7 +17,7 @@ using System.Web.Http.Cors;
 
 namespace GamesProject.Controllers
 {
-    [RoutePrefix("api/news/channel")]
+    [RoutePrefix("api/channel")]
     [GameExceptionFilter]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GameController : ApiController
@@ -92,9 +92,9 @@ namespace GamesProject.Controllers
         [SwaggerResponse(HttpStatusCode.OK, Description = "Returns a game.", Type = typeof(IEnumerable<Game>))]
         [SwaggerResponse(HttpStatusCode.NotFound, Description = "Channel not found.")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, Description = "Server error.")]
-        public async Task<IHttpActionResult> GetGameFromFeed([FromUri] int gameId)
+        public async Task<IHttpActionResult> GetGameFromFeed([FromUri] int channelId)
         {
-            var game = await _gameService.GetGamesFromFeedAsync(gameId).ConfigureAwait(false);
+            var game = await _gameService.GetGamesFromFeedAsync(channelId).ConfigureAwait(false);
             return Ok(game);
         }
 

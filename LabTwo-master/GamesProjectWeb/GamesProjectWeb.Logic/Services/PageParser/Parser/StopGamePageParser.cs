@@ -27,7 +27,7 @@ namespace GamesProjectWeb.Logic.Services.PageParser.Parser
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var nodes = doc.GetElementbyId("article_body")?.ChildNodes;
+            var nodes = doc.GetElementbyId("articleBody")?.ChildNodes;
             if (ReferenceEquals(nodes, null))
             {
                 return null;

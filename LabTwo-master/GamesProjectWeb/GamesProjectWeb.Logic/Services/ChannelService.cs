@@ -25,7 +25,8 @@ namespace GamesProjectWeb.Logic.Services
         public async Task<IEnumerable<Channel>> GetChannels()
         {
             var dbChannels = await _channelRepository.GetChannelAsync().ConfigureAwait(false);
-            return dbChannels.Select(feed => Mapper.Map<Channel>(feed));
+            var dbDB = dbChannels.Select(feed => Mapper.Map<Channel>(feed));
+            return dbDB;
         }
 
         public async Task<Channel> GetOrCreateChannelAsync(LinkRequest createRequest)

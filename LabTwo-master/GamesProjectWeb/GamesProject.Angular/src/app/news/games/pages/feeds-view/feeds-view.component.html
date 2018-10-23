@@ -1,0 +1,63 @@
+<div class="search_block">
+  <div>
+    <div  class="mat-display-1">Search RSS channel</div>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter the URL to search for the channel."
+        [(ngModel)]="searchStr"
+      >
+    </mat-form-field>
+    <button  mat-flat-button (click)="handleSearch()">Search </button>
+  </div>
+
+</div>
+
+<div class="info_block">
+  <div
+       @fade
+       class="alert alert-{{message.type}}"
+       *ngIf="message.text"
+  >
+    {{message.text}}
+  </div>
+</div>
+
+<div class="loader" *ngIf="!isLoaded">
+  <mat-spinner  mode="indeterminate" ></mat-spinner>
+</div>
+
+<div class="content_news" *ngIf="isDataLoaded">
+  <div class="card" *ngFor="let n of news">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> {{n.Title}}</mat-card-title>
+        <mat-card-subtitle>{{n.PublishingDate | appMoment}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <!-- <mat-card-content>
+          {{n.Description | appHtmlFilter}}
+      </mat-card-content> -->
+
+      <mat-card-actions *ngIf="!isSearch">
+        <button mat-stroked-button color="primary" (click)="openDetail(n)">Detail</button>
+        <!--<button mat-stroked-button color="primary">Favorites</button>-->
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+  <div class="pagination" *ngIf="isPaginationNeed">
+    <button  mat-fab color="primary" class="pagination-button"
+             (click)="navigateTo(searchStr,0)" >First</button>
+    <button  mat-fab color="primary" class="pagination-button"
+             (click)="navigateTo(searchStr,currentPage - 1)"
+              [disabled]="currentPage == 0">Previous</button>
+    <button  mat-fab color="primary" class="pagination-button"
+             (click)="navigateTo(searchStr,currentPage + 1)"
+             [disabled]="currentPage == pageModel.TotalPage-1">Next</button>
+    <button  mat-fab color="primary" class="pagination-button"
+             (click)="navigateTo(searchStr,pageModel.TotalPage-1)">Last</button>
+  </div>
+
+</div>

@@ -1,0 +1,62 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="app-container" *ngIf="isLoaded">
+  <mat-sidenav-container class="all-wrap" fullscreen>
+
+    <mat-sidenav #sidenav class="sidenav">
+      <mat-list >
+        <mat-list-item>
+        <div class="mat-display-1">Feed Source</div>
+        </mat-list-item>
+        <div class="item" *ngFor="let feed of feeds">
+          <mat-list-item (click)="sidenav.close()"
+                         [routerLink] = "['/news/channel']"
+                         [queryParams]="{newsSource: feed.LinkRSS, page: 0}">
+            {{feed.Title}}
+          </mat-list-item>
+        </div>
+      </mat-list>
+    </mat-sidenav>
+
+    <div class="page-wrap">
+
+      <header role="banner">
+        <div class="mat-display-1">
+          <mat-toolbar color="primary" role="heading" class="main-toolbar">
+            <div>
+              <button
+                type="button"
+                mat-icon-button
+                (click)="sidenav.open()"
+                title="Open sidenav">
+                <mat-icon>menu</mat-icon>
+              </button>
+              Games-News
+              <button mat-button routerLink="/" >Main page</button>
+            </div>
+              <div class="search-container">
+                <mat-form-field class="search-field">
+                  <input matInput [(ngModel)]="searchRequest">
+                </mat-form-field>
+                <button mat-stroked-button class="search-button"
+                        [routerLink] = "['/news/channel']"
+                        [queryParams]="{searchRequest: searchRequest}">Search news</button>
+              </div>
+          </mat-toolbar>
+        </div>
+      </header>
+
+      <main class="content">
+        <router-outlet></router-outlet>
+      </main>
+
+      <footer>
+        <app-games-footer class="footer" ></app-games-footer>
+      </footer>
+
+    </div>
+  </mat-sidenav-container>
+</div>
+
+<div class="loader" *ngIf="!isLoaded">
+  <mat-spinner  mode="indeterminate" ></mat-spinner>
+</div>

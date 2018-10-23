@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Collections.Generic;
 
 namespace GamesProject.Controllers
 {
@@ -58,10 +59,21 @@ namespace GamesProject.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var channels = await _channelService.GetChannels().ConfigureAwait(false);
-            var channelsModel = channels.Select(c => Mapper.Map<ChannelModel>(channels));
-            return Ok(channelsModel);
+            //var channelsModel = channels.Select(c => Mapper.Map<ChannelModel>(channels));
+            var model = new List<ChannelModel>();
+            foreach(var ch in channels)
+            {
+                model.Add(new ChannelModel
+                {
+                    Id = ch.Id,
+                    Title = ch.Title,
+                    Link = ch.Link,
+                    LinkRSS = ch.LinkRSS,
+                    LastModified = ch.LastModified
+                });
+            }
+            return Ok(model);
         }
 
 

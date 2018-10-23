@@ -1,0 +1,58 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.app-container  {
+  min-height: calc(100vh - 64px);
+}
+.footer {
+  height: 80px;
+}
+
+.all-wrap {
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
+
+.mat-display-1 {
+  padding: 0;
+  margin: 0;
+}
+
+.mat-spinner {
+  margin:0 auto;
+}
+
+.sidenav {
+  max-width: 40%;
+}
+
+.main-toolbar {
+  justify-content: space-between;
+}
+
+.search-field {
+  padding-right:  5%;
+}
+
+.search-button {
+  padding-right:  1%;
+}

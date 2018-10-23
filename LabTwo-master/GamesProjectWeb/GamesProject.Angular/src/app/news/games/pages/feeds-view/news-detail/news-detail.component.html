@@ -1,0 +1,25 @@
+<div class="back">
+  <div class="subheading-2">
+    <mat-toolbar class="back_toolbar" >
+      <button mat-button (click)="handleReturn()">{{returnMessage}}</button>
+    </mat-toolbar>
+  </div>
+</div>
+
+<div class="loader" *ngIf="!isLoaded">
+  <mat-spinner  mode="indeterminate" ></mat-spinner>
+</div>
+
+<div *ngIf="isLoaded">
+  <div class="content">
+    <mat-card class="main-card">
+      <mat-card-header>
+        <mat-card-title>{{news.Title}}</mat-card-title>
+        <mat-card-subtitle>{{news.PublishingDate | appMoment}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div [innerHtml]="content">{{news.Description}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
